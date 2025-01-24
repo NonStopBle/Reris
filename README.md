@@ -14,13 +14,20 @@ This project enables seamless interaction with robotics systems, leveraging mode
   - Visualize the robot's environment in real time with LiDAR data.
   - Dynamically update the map as new data is received.
 
+![create_map_new](https://github.com/user-attachments/assets/47780e12-e072-4e6f-b028-d60b61020623)
+
 - **Target Selection:**
   - Click to set navigation targets for the robot.
   - Display the robot’s pathfinding progress and status updates.
 
+![reaching_the_target](https://github.com/user-attachments/assets/7622fb21-63f2-4515-a260-0283439f36d7)
+
 - **Responsive UI:**
   - Optimized for desktop and mobile devices.
   - Clean and intuitive interface for robotics management.
+
+
+![admin_registration](https://github.com/user-attachments/assets/8b27fcc2-5211-4426-b023-d9ca06b134e7)
 
 ---
 
@@ -32,10 +39,12 @@ This project enables seamless interaction with robotics systems, leveraging mode
 - **Websocket**: For communicate with robotics and ros system.
 - **Axios**: Handling API requests to the backend.
 
+
 ### Backend:
 - (Optional) Any backend API service (e.g., Node.js, Flask, or similar) for processing and streaming LiDAR data, robot status, and navigation commands.
 
 ---
+
 
 ## Project Structure
 ```
