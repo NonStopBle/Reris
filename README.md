@@ -33,7 +33,7 @@ This project enables seamless interaction with robotics systems, leveraging mode
 
 ## Tech Stack
 ### Frontend:
-- **Vue.js 3**: Reactive framework for building the application.
+- **Vue.js with Quasar **: Reactive framework for building the application.
 - **Vuex**: State management for real-time data updates.
 - **Vue Router**: Navigation between app pages.
 - **Websocket**: For communicate with robotics and ros system.
@@ -42,6 +42,9 @@ This project enables seamless interaction with robotics systems, leveraging mode
 
 ### Backend:
 - (Optional) Any backend API service (e.g., Node.js, Flask, or similar) for processing and streaming LiDAR data, robot status, and navigation commands.
+- Websockets
+- UDP/TCP
+- ROS (Robot Operating System)
 
 ---
 
