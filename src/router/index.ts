@@ -7,14 +7,8 @@ import {
 } from 'vue-router';
 import routes from './routes';
 
-/*
- * If not building with SSR mode, you can
- * directly export the Router instantiation;
- *
- * The function below can be async too; either use
- * async/await or return a Promise which resolves
- * with the Router instance.
- */
+// Mock authentication function (replace with actual implementation)
+const isAuthenticated = (): boolean => !!localStorage.getItem('authToken'); // Check if token exists in local storage
 
 export default defineRouter(function (/* { store, ssrContext } */) {
   const createHistory = process.env.SERVER
@@ -25,10 +19,19 @@ export default defineRouter(function (/* { store, ssrContext } */) {
     scrollBehavior: () => ({ left: 0, top: 0 }),
     routes,
 
-    // Leave this as is and make changes in quasar.conf.js instead!
-    // quasar.conf.js -> build -> vueRouterMode
-    // quasar.conf.js -> build -> publicPath
+    // Configurations related to history mode
     history: createHistory(process.env.VUE_ROUTER_BASE),
+  });
+
+  // Global Navigation Guard
+  Router.beforeEach((to, from, next) => {
+    if (to.meta.requiresAuth && !isAuthenticated()) {
+      // Redirect unauthenticated users to the login page
+      next('/login');
+    } else {
+      // Allow navigation to the target route
+      next();
+    }
   });
 
   return Router;

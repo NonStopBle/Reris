@@ -56,15 +56,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref , onMounted  } from 'vue';
 import { useRouter } from 'vue-router';
 import '../css/login.css';
+import axios from 'axios';
 
 const username = ref('');
 const password = ref('');
 const usernameError = ref('');
 const passwordError = ref('');
 const router = useRouter();
+
+onMounted(() => {
+  const token = localStorage.getItem('authToken');
+  if (token) {
+    // If token exists, redirect to home page (or any other page)
+    void router.push('/');
+  }
+});
+
 
 const goToSignUp = async () => {
   try {
@@ -81,6 +91,7 @@ const goToForgetPassword = async () => {
     console.error('Navigation error:', error);
   }
 }
+
 
 const handleLogin = async () => {
   let valid = true;
@@ -107,14 +118,39 @@ const handleLogin = async () => {
     passwordError.value = '';
   }
 
-  // If valid, navigate to another page
+  // If valid, call login API
   if (valid) {
     try {
-      await router.push('/dashboard'); // Replace '/dashboard' with your actual route
+      const response = await axios.post('http://localhost:5184/api/auth/login', {
+        Username: username.value,
+        password: password.value,
+      });
+
+      if (response.data && response.data.token) {
+        // Save the token to localStorage
+        localStorage.setItem('authToken', response.data.token);
+        localStorage.setItem('username', response.data.username);
+        
+
+        console.log('Login successful:', response.data.message);
+
+        // Navigate to the dashboard or any other page
+        await router.push('/');
+      } else {
+        // Handle unexpected response format
+        console.error('Unexpected response:', response.data);
+        usernameError.value = 'Login failed. Please try again.';
+      }
     } catch (error) {
-      console.error('Navigation error:', error);
+      // Handle API errors
+      console.error('Login error:', error);
+      if (error.response && error.response.data && error.response.data.message) {
+        usernameError.value = error.response.data.message;
+      } else {
+        usernameError.value = 'Login failed. Please check your credentials.';
+      }
     }
   }
-};
+}
 </script>
 
