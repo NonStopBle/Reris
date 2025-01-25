@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\rebot-api.props" />
+</Project>

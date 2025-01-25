@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "bXBr9KCaUBZlythpjBBVl9WPAjfjPmrRNKZu5JWmRd0=",
+  "Source": "rebot-api",
+  "BasePath": "_content/rebot-api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
